@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 console.log("js.js linked");
 
 
@@ -499,13 +498,40 @@ console.log("js.js linked");
 
 
 
+var closeW = document.getElementById("noBtn");
 
 
 
+closeW.addEventListener("click", function(e){
+    e.preventDefault();
+    countdown_init();
 
+});
 
 
 
+var countdown;
+var countdown_number;
+   
+    function countdown_init() {
+        countdown_number = 6;
+        countdown_trigger();
+    }
+   
+    function countdown_trigger() {
+        if (countdown_number > 0) {
+            countdown_number--;
+   
+            document.getElementById('countdown').innerHTML = "Time: " + countdown_number;
+   
+            if(countdown_number > 0) {
+                countdown = setTimeout('countdown_trigger()', 1000);
+            }else{
+                // window.location.href = "thanks.html";
+                alert("xxx")
+            }
+        }
+    }
 
 
 
@@ -771,8 +797,6 @@ console.log("js.js linked");
 
 
 
-=======
->>>>>>> f236a67b05f0baea3d811e8261b534735e07c336
 
 
 
@@ -1273,7 +1297,12 @@ console.log("js.js linked");
 
 
 
-<<<<<<< HEAD
+
+
+
+
+
+
 
 
 
@@ -1659,43 +1688,6 @@ var load = function() {
 // load();
 
 formEl.addEventListener("submit", brewFormHandler);
-=======
-console.log("js.js linked");
-
-var closeW = document.getElementById("noBtn");
-
-
-
-closeW.addEventListener("click", function(e){
-    e.preventDefault();
-    countdown_init();
-
-});
-
-
-
-var countdown;
-var countdown_number;
-   
-    function countdown_init() {
-        countdown_number = 6;
-        countdown_trigger();
-    }
-   
-    function countdown_trigger() {
-        if (countdown_number > 0) {
-            countdown_number--;
-   
-            document.getElementById('countdown').innerHTML = "Time: " + countdown_number;
-   
-            if(countdown_number > 0) {
-                countdown = setTimeout('countdown_trigger()', 1000);
-            }else{
-                // window.location.href = "thanks.html";
-                alert("xxx")
-            }
-        }
-    }
 
 
 
@@ -1708,4 +1700,6 @@ var countdown_number;
 
 
 
->>>>>>> f236a67b05f0baea3d811e8261b534735e07c336
+
+
+
