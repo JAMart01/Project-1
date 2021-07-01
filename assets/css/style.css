@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 body {
     background-image: url("./imgs/nodrinkingunder21.jpeg");
     background-repeat: repeat;
@@ -2012,3 +2013,60 @@ body {
 
 
 
+=======
+body {
+    background-image: url("./imgs/nodrinkingunder21.jpeg");
+    background-repeat: repeat;
+    
+    background-position: center;
+    padding: 15vw 15vw;
+}
+.title {
+    font-weight: bold;
+    color: sandybrown;
+    font-size: 48px;
+    font-family: 'Staatliches', sans-serif;
+    position: absolute;
+    top: 0;
+    right: 35vw;
+    text-shadow: 15px 10px #ff0000;
+    -webkit-text-stroke: 0.5px black;
+}
+
+.question {
+    text-align: center;
+    background-color: rgba(255, 255, 255,0.5);
+    padding: 10vw 10vw;
+}
+
+#yy {
+    background-color: greenyellow;
+    border-radius: 15px;
+    color:tan;
+    margin: 15px opx;
+
+}
+
+#nn {
+    background-color: red;
+    border-radius: 15px;
+    color: seashell;
+}
+
+.yBtn {
+    margin: 15px opx;
+}
+
+.timer {
+    color: yellow;
+}
+
+#warningsign {
+    max-width: 30vw;
+    max-height: 60vw;
+    position: absolute;
+    right: 35vw;
+    top: 15vw;
+    opacity: 0.8;
+}
+>>>>>>> 4427d8fc4e508936a81ec452e3b36e8e50647fd3
