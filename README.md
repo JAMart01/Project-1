@@ -1,5 +1,23 @@
-# Project-1
+# Beer-Me
+
+  The best place to find a brewery near you that fits your needs. 
 
 
-Link to Deployed Website
-https://jamart01.github.io/Project-1/
+---
+
+
+# The APIs
+- Open Brewery DB 
+https://www.openbrewerydb.org/documentation
+- Mapquest Geocoding API
+https://developer.mapquest.com/documentation/geocoding-api/
+
+
+---
+# The Team 
+
+- Jorge Martinez (JavaScript)
+- Nelson Carlos da Silva (Javascript)
+- Norma De Jesus(HTML and CSS)
+- Chunyu Chang (JavaScript)
+- Kierra Nelson (HTML and CSS)
