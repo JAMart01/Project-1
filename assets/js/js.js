@@ -498,40 +498,40 @@ console.log("js.js linked");
 
 
 
-var closeW = document.getElementById("noBtn");
+// var closeW = document.getElementById("noBtn");
 
 
 
-closeW.addEventListener("click", function(e){
-    e.preventDefault();
-    countdown_init();
+// closeW.addEventListener("click", function(e){
+//     e.preventDefault();
+//     countdown_init();
 
-});
+// });
 
 
 
-var countdown;
-var countdown_number;
+// var countdown;
+// var countdown_number;
    
-    function countdown_init() {
-        countdown_number = 6;
-        countdown_trigger();
-    }
+//     function countdown_init() {
+//         countdown_number = 6;
+//         countdown_trigger();
+//     }
    
-    function countdown_trigger() {
-        if (countdown_number > 0) {
-            countdown_number--;
+//     function countdown_trigger() {
+//         if (countdown_number > 0) {
+//             countdown_number--;
    
-            document.getElementById('countdown').innerHTML = "Time: " + countdown_number;
+//             document.getElementById('countdown').innerHTML = "Time: " + countdown_number;
    
-            if(countdown_number > 0) {
-                countdown = setTimeout('countdown_trigger()', 1000);
-            }else{
-                // window.location.href = "thanks.html";
-                alert("xxx")
-            }
-        }
-    }
+//             if(countdown_number > 0) {
+//                 countdown = setTimeout('countdown_trigger()', 1000);
+//             }else{
+//                 // window.location.href = "thanks.html";
+//                 alert("xxx")
+//             }
+//         }
+//     }
 
 
 
@@ -1513,12 +1513,20 @@ var brewFormHandler = function(event) {
 
 
     if (!addressInput || !cityInput || !stateInput) {
-        alert("You need to fill out the address form!");
+        responseContainerEl.innerHTML = "";
+        var addressAlert = document.createElement("h4");
+        addressAlert.textContent = "You need to fill out the address form!";
+        formEl.setAttribute("search-id","addressAlert");
+        responseContainerEl.appendChild(addressAlert);
         return false;
     }
     
     if (listLengthInput && (listLengthInput < 1 || listLengthInput > 50)) {
-        alert("You need to enter a number between 1 and 50!");
+        responseContainerEl.innerHTML = "";
+        var numberAlert = document.createElement("h4");
+        numberAlert.textContent = "You need to enter a number between 1 and 50!";
+        formEl.setAttribute("search-id","numberAlert");
+        responseContainerEl.appendChild(numberAlert);
         return false;
     }
 
@@ -1581,7 +1589,8 @@ var brewFetch = function(geoURL,BrewURL){
                         
                         breweries[i][2] = document.createElement("p");
                         
-                        breweries[i][2].textContent = response[i].street + ", " + response[i].city + ", " + response[i].state + " " + response[i].postal_code;
+                        breweries[i][2].textContent = response[i].street + ", " + response[i].city 
+                            + ", " + response[i].state + " " + response[i].postal_code;
 
                         responseContainerEl.appendChild(breweries[i][0]);
                         
