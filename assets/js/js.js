@@ -1489,39 +1489,6 @@ function refuseenter() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 var formEl = document.querySelector("#brew-form");
 var responseContainerEl = document.querySelector("#responsive-container");
 
@@ -1537,12 +1504,20 @@ var brewFormHandler = function(event) {
 
 
     if (!addressInput || !cityInput || !stateInput) {
-        alert("You need to fill out the address form!");
+        responseContainerEl.innerHTML = "";
+        var addressAlert = document.createElement("h4");
+        addressAlert.textContent = "You need to fill out the address form!";
+        formEl.setAttribute("search-id","addressAlert");
+        responseContainerEl.appendChild(addressAlert);
         return false;
     }
     
     if (listLengthInput && (listLengthInput < 1 || listLengthInput > 50)) {
-        alert("You need to enter a number between 1 and 50!");
+        responseContainerEl.innerHTML = "";
+        var numberAlert = document.createElement("h4");
+        numberAlert.textContent = "You need to enter a number between 1 and 50!";
+        formEl.setAttribute("search-id","numberAlert");
+        responseContainerEl.appendChild(numberAlert);
         return false;
     }
 
@@ -1571,81 +1546,25 @@ var brewFormHandler = function(event) {
 };
 
 
-var brewFetch = function(gurl,burl){
+var brewFetch = function(geoURL,BrewURL){
     formEl.setAttribute("search-id","true");
 
-    fetch(gurl)
-        .then(function(response){
-            return response.json();
-        })
-        .then(function(response){
-            var lat = JSON.stringify(response.results[0].locations[0].latLng.lat);
-
-            var lng = JSON.stringify(response.results[0].locations[0].latLng.lng);
-
-            burl += "&by_dist=" + lat + "," + lng;
-
-            fetch(burl)
-                .then(function(response){
-                    return response.json();
-                })
-                .then(function(response){
-                    var breweries = [];
-
-                    for (var i = 0 ; i < response.length ; i++) {
-                        breweries[i] = [];
-
-                        breweries[i][0] = document.createElement("h3");
-
-                        breweries[i][0].textContent = response[i].name;
-
-                        breweries[i][1] = document.createElement("p");
-
-                        breweries[i][1].textContent = response[i].brewery_type.toUpperCase();
-                        
-                        breweries[i][2] = document.createElement("p");
-                        
-                        breweries[i][2].textContent = response[i].street + ", " + response[i].city + ", " + response[i].state + " " + response[i].postal_code;
-
-                        responseContainerEl.appendChild(breweries[i][0]);
-                        
-                        responseContainerEl.appendChild(breweries[i][1]);
-
-                        responseContainerEl.appendChild(breweries[i][2]);
-                    }
-                
-                })
-        })
-
-};
-
-var load = function() {
     fetch(geoURL)
         .then(function(response){
             return response.json();
         })
         .then(function(response){
-            console.log(response);
-
-            console.log(response.results[0].locations[0].latLng);
-
             var lat = JSON.stringify(response.results[0].locations[0].latLng.lat);
 
             var lng = JSON.stringify(response.results[0].locations[0].latLng.lng);
 
-            console.log(lat,lng);
+            BrewURL += "&by_dist=" + lat + "," + lng;
 
-            brewURL = brewURL +lat+","+lng ;
-
-            console.log(brewURL);
-
-            fetch(brewURL)
+            fetch(BrewURL)
                 .then(function(response){
                     return response.json();
                 })
                 .then(function(response){
-                    console.log(response);
-
                     var breweries = [];
 
                     for (var i = 0 ; i < response.length ; i++) {
@@ -1661,7 +1580,8 @@ var load = function() {
                         
                         breweries[i][2] = document.createElement("p");
                         
-                        breweries[i][2].textContent = response[i].street + ", " + response[i].city + ", " + response[i].state + " " + response[i].postal_code;
+                        breweries[i][2].textContent = response[i].street + ", " + response[i].city 
+                            + ", " + response[i].state + " " + response[i].postal_code;
 
                         responseContainerEl.appendChild(breweries[i][0]);
                         
@@ -1671,12 +1591,9 @@ var load = function() {
                     }
                 
                 })
-
         })
 
 };
-
-// load();
 
 formEl.addEventListener("submit", brewFormHandler);
 
