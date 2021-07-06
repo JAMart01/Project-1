@@ -503,6 +503,7 @@ var ageQ = document.getElementById("agecheck");
 var yesBtn = document.getElementById("yy");
 var noBtn = document.getElementById("nn");
 var refusePage = document.getElementById("notage")
+var ageinfo = document.getElementById("infoform")
 
 
 noBtn.addEventListener("click", function(e){
@@ -512,21 +513,50 @@ noBtn.addEventListener("click", function(e){
 
 yesBtn.addEventListener("click", function(e){
     e.preventDefault();
-    beginmain();
+    // beginmain();
+    showinfo();
 });
 
 function beginmain() {
     mainthing.style.display = "block";
     ageQ.style.display = "none";
+    ageinfo.style.display = "none";
 }
 
 function refuseenter() {
     refusePage.style.display = "block";
     ageQ.style.display = "none";
+    ageinfo.style.display = "none";
 
   }
 
+ function showinfo() {
+    ageinfo.style.display = "block";
+    ageQ.style.display = "none";
+ } 
 
+function CalculateAge(){
+
+    var userDateinput = document.getElementById("DOB").value;  
+    console.log(userDateinput);
+    
+    // convert user input value into date object
+    var birthDate = new Date(userDateinput);
+     console.log(" birthDate"+ birthDate);
+    
+    // get difference from current date;
+    var difference=Date.now() - birthDate.getTime(); 
+         
+    var  ageDate = new Date(difference); 
+    var calculatedAge=   Math.abs(ageDate.getUTCFullYear() - 1970);
+    if (calculatedAge < 21 || userDateinput === "") {
+       refuseenter();
+    }else{
+        beginmain();
+        
+    };
+    
+}
 
 
 
