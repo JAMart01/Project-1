@@ -1490,7 +1490,7 @@ function refuseenter() {
 
 
 var formEl = document.querySelector("#brew-form");
-var responseContainerEl = document.querySelector("#responsive-container");
+var responseContainerEl = document.querySelector(".responsive-container");
 
 var brewFormHandler = function(event) {
     event.preventDefault();
