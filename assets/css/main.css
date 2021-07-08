@@ -72,3 +72,9 @@ body {
     border-radius: 25px;
 
 }
+
+
+#map {
+    height: 1000px;
+    width: 1000px;
+}

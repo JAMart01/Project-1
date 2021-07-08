@@ -1588,6 +1588,10 @@ var brewFetch = function(geoURL,BrewURL){
 
             var lng = JSON.stringify(response.results[0].locations[0].latLng.lng);
 
+            var latLng = lat + lng;
+
+            console.log(latLng);
+
             BrewURL += "&by_dist=" + lat + "," + lng;
 
             fetch(BrewURL)
@@ -1597,8 +1601,16 @@ var brewFetch = function(geoURL,BrewURL){
                 .then(function(response){
                     var breweries = [];
 
+                    var mapLatLng = [];
+
+                    console.log(response);
+
                     for (var i = 0 ; i < response.length ; i++) {
                         breweries[i] = [];
+
+                        mapLatLng[i] = [];
+
+                        mapLatLng[i] = response[i].latitude + "," + response[i].longitude;
 
                         breweries[i][0] = document.createElement("h3");
 
@@ -1619,7 +1631,34 @@ var brewFetch = function(geoURL,BrewURL){
 
                         responseContainerEl.appendChild(breweries[i][2]);
                     }
+                    
                 
+
+                    L.mapquest.key = 'i59AhjaYZTQaOPj86iKkHTeoACIvMK7I';
+
+                    var map = L.mapquest.map('map', {
+                    center: [0,0],
+                    layers: L.mapquest.tileLayer('map'),
+                    zoom: 12
+                    });
+
+                    L.marker([mapLatLng[0]], {
+                        icon: L.mapquest.icons.marker({
+                          primaryColor: '#22407F',
+                          secondaryColor: '#3B5998',
+                          shadow: true,
+                          size: 'md',
+                          symbol: 'A'
+                        })
+                      });
+
+                    var directions = L.mapquest.directions();
+                    directions.route({
+                    locations: mapLatLng
+                    });
+
+                    console.log(mapLatLng);
+
                 })
         })
 
