@@ -1632,34 +1632,50 @@ var brewFetch = function(geoURL,BrewURL){
                         responseContainerEl.appendChild(breweries[i][2]);
                     }
                     
-                
+
+                    
 
                     L.mapquest.key = 'i59AhjaYZTQaOPj86iKkHTeoACIvMK7I';
-
+                    
                     var map = L.mapquest.map('map', {
-                    center: [0,0],
-                    layers: L.mapquest.tileLayer('map'),
-                    zoom: 12
-                    });
-
-                    L.marker([mapLatLng[0]], {
-                        icon: L.mapquest.icons.marker({
-                          primaryColor: '#22407F',
-                          secondaryColor: '#3B5998',
-                          shadow: true,
-                          size: 'md',
-                          symbol: 'A'
-                        })
+                        center: [lat, lng],
+                        layers: L.mapquest.tileLayer('map'),
+                        zoom: 12
                       });
 
-                    var directions = L.mapquest.directions();
-                    directions.route({
-                    locations: mapLatLng
-                    });
+                    // var directions = L.mapquest.directions();
+                    
+                    // directions.routeMatrix({
+                    // 'locations': mapLatLng,
+                    // 'options': {
+                    //     'allToAll': true
+                    // }
+                    // }, routeMatrixCallback);
 
-                    console.log(mapLatLng);
+                    // function routeMatrixCallback(error, response) {
+                    // console.log(response);
+                    // console.log(response.distance[0]);
+                    // }
 
+                    // L.mapquest.map('map', {
+                    //     center: [lat, lng],
+                    //     layers: L.mapquest.tileLayer('map'),
+                    //     zoom: 12
+                    //   });
+
+                    // L.mapquest.textMarker([lat,lng], {
+                    //     text: 'Coffee Shop',
+                    //     subtext: 'Iconic coffeehouse chain',
+                    //     position: 'right',
+                    //     type: 'marker',
+                    //     icon: {
+                    //       primaryColor: '#333333',
+                    //       secondaryColor: '#333333',
+                    //       size: 'sm'
+                    //     }
+                    //   }).addTo("map");
                 })
+              
         })
 
 };
