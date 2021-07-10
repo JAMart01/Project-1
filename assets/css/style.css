@@ -1,3 +1,4 @@
+/*
 body {
     background-image: url("./imgs/nodrinkingunder21.jpeg");
     background-repeat: repeat;
@@ -44,6 +45,8 @@ body {
 .timer {
     color: yellow;
 }
+*/
+@import "https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css";
 
 
 
