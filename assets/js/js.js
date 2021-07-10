@@ -1636,44 +1636,56 @@ var brewFetch = function(geoURL,BrewURL){
                     
 
                     L.mapquest.key = 'i59AhjaYZTQaOPj86iKkHTeoACIvMK7I';
-                    
+
                     var map = L.mapquest.map('map', {
                         center: [lat, lng],
                         layers: L.mapquest.tileLayer('map'),
                         zoom: 12
                       });
+                      
+                      var directions = L.mapquest.directions();
 
-                    // var directions = L.mapquest.directions();
-                    
-                    // directions.routeMatrix({
-                    // 'locations': mapLatLng,
-                    // 'options': {
-                    //     'allToAll': true
-                    // }
-                    // }, routeMatrixCallback);
+                      directions.setLayerOptions({
+                          startMarker: {
+                              draggable: false,
+                              icon: "marker",
+                              iconOptions: {
+                                  size: "sm",
+                              }
+                          },
+                          endMarker: {
+                              draggable: false,
+                            icon: 'marker',
+                            iconOptions: {
+                              size: 'sm',
+                            }
+                          },
+                          routeRibbon: {
+                            color: "#2aa6ce",
+                            opacity: 0,
+                            showTraffic: false,
+                            draggable: false
+                          },
+                          waypointMarker: {
+                              draggable: false
+                          },
+                      });
 
-                    // function routeMatrixCallback(error, response) {
-                    // console.log(response);
-                    // console.log(response.distance[0]);
-                    // }
+                      L.mapquest.textMarker([lat, lng], {
+                        text: 'You Are Here!',
+                        position: 'bottom',
+                        type: 'marker',
+                        icon: {
+                          primaryColor: '#00cc66',
+                          secondaryColor: '#ffffff',
+                          size: 'sm'
+                        }
+                      }).addTo(map);
 
-                    // L.mapquest.map('map', {
-                    //     center: [lat, lng],
-                    //     layers: L.mapquest.tileLayer('map'),
-                    //     zoom: 12
-                    //   });
-
-                    // L.mapquest.textMarker([lat,lng], {
-                    //     text: 'Coffee Shop',
-                    //     subtext: 'Iconic coffeehouse chain',
-                    //     position: 'right',
-                    //     type: 'marker',
-                    //     icon: {
-                    //       primaryColor: '#333333',
-                    //       secondaryColor: '#333333',
-                    //       size: 'sm'
-                    //     }
-                    //   }).addTo("map");
+                      directions.route({
+                        locations: mapLatLng
+                      });
+                
                 })
               
         })
