@@ -1,38 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="./assets/css/main.css">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest.js"></script>
     <link type="text/css" rel="stylesheet" href="https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest.css"/>
     <title>Beer Me</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <link rel="stylesheet" href="./assets/css/main.css">
 </head>
 <body>
     <main id="mainform" style="display: none;">
         <div class="box">
             <article class="heading">
-                <h1 class= "title">BEER ME</h1>
+                <h1 class="title"><em><b>BEER ME</b></em></h1>
             </article>
             
             <div class="description">
-                <p>Welcome to Beer Me, your go-to resource for finding different types of breweries near you. Whether you're here to 
-                    find a new favorite, or just searching to see what's around; <strong>BEER ME</strong>
+                <p><small>Welcome to Beer Me, your go-to resource for finding different types of breweries near you. Whether you're here to 
+                    find a new favorite, or just searching to see what's around; <strong><em>BEER ME</em></strong>
                     is here to help!
-                </p>
+                </small></p>
             </div>
             <br>
 
             <form class="box-search" id="brew-form">
-                    <div class="form-group">
-                        <input type="text" name="address" placeholder="Enter the street address." />
-                    </div>
-                    <div class="form-group">
-                        <input type="text" name="city" placeholder="Enter the city." />
-                    </div>
-                    <div class="form-group">
-                        <select name="state" class="select-dropdown">
+                <div class="control form-group" id="">
+                    <input class="input is-hovered" type="text" name="address" placeholder="Enter the street address." />
+                </div>
+                <div class="form-group">
+                    <input class="input is-hovered" type="text" name="city" placeholder="Enter the city." />
+                </div>
+                    <div class="select is-multiple form-group" id="">
+                        <!-- <div class="control"> -->
+                        <select  name="state" class="select-dropdown">
                             <option value="" disabled selected>Select the state.</option>
                             <option value="AL">Alabama</option>
                             <option value="AK">Alaska</option>
@@ -87,8 +89,10 @@
                             <option value="WY">Wyoming</option>
                         </select>
                     </div>
-                    <div class="form-group">
-                        <select name="brewery-type" class="select-dropdown">
+                    <!-- </div> -->
+                    <div class="control form-group" id="">
+                        <div class="select is-focused" >
+                        <select name="brewery-type">
                             <option value="" disabled selected>Select a brewery type.</option>
                             <option value="">Any</option>
                             <option value="micro">Micro</option>
@@ -99,19 +103,36 @@
                             <option value="proprietor">Proprietor</option>
                         </select>
                     </div>
-                    <div class="form-group">
-                        <h2>How many results would you like?</h2>
+                </div>
+                    
+
+
+                    <div class="control" id="input">
+                        <input class="input is-hovered" type="text" name="list-length" placeholder="Enter a number from 1 to 50." />
                     </div>
-                    <div class="input">
-                        <input type="text" name="list-length" placeholder="Enter a number from 1 to 50." />
-                    </div>
                     <div class="form-group">
-                        <button class="btn" id="find-breweries" type="submit">Find Breweries!</button>
+                        <div class="control">
+                        <button class="button is-black" class="box has-text-centered" id="find-breweries" type="submit">Find Breweries!</button>
+                        </div>
                     </div>
                 </form>
             </div>    
 
-            <div class="responsive-container"></div>
+            <div class="responsive-container">
+
+                <div class="tile is-ancestor">
+                    <div class="tile is-parent">
+                      <article class="tile is-child box" id="brew-list">
+                      </article>
+                    </div>
+                    <div class="tile is-parent">
+                      <div class="tile is-child box" id="map">
+                      </div>
+                    </div>
+                </div>
+                   
+
+            </div>
             
             <div id="map" style="display: none">MAP GOES HERE</div>
 
@@ -122,7 +143,6 @@
     <section id="agecheck" style="display: block;">
         <div class="title">
             <h1>Beer Me?</h1>
-    
         </div>
         <div class="question">
             <p>Are you 21 years old?</p>
@@ -136,6 +156,10 @@
     
         </div>
     </section>
+
+
+
+
 
     <section id="notage" style="display: none;">
         <div class="thankstitle">
@@ -163,8 +187,6 @@
     
     </section>
 
-
     <script src="./assets/js/js.js"></script>
 </body>
 </html>
-
