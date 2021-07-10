@@ -1521,6 +1521,8 @@ function CalculateAge(){
 
 var formEl = document.querySelector("#brew-form");
 var responseContainerEl = document.querySelector(".responsive-container");
+var brewlistEl = document.querySelector("#brew-list");
+
 
 var brewFormHandler = function(event) {
     event.preventDefault();
@@ -1579,6 +1581,8 @@ var brewFormHandler = function(event) {
 var brewFetch = function(geoURL,BrewURL){
     formEl.setAttribute("search-id","true");
 
+    
+
     fetch(geoURL)
         .then(function(response){
             return response.json();
@@ -1598,9 +1602,15 @@ var brewFetch = function(geoURL,BrewURL){
                     var breweries = [];
 
                     for (var i = 0 ; i < response.length ; i++) {
+                         var listGroup = document.createElement("div");
+                         listGroup.setAttribute("class", "mb-4");
+
+                         
+
+
                         breweries[i] = [];
 
-                        breweries[i][0] = document.createElement("h3");
+                        breweries[i][0] = document.createElement("p");
 
                         breweries[i][0].textContent = response[i].name;
 
@@ -1613,11 +1623,15 @@ var brewFetch = function(geoURL,BrewURL){
                         breweries[i][2].textContent = response[i].street + ", " + response[i].city 
                             + ", " + response[i].state + " " + response[i].postal_code;
 
-                        responseContainerEl.appendChild(breweries[i][0]);
-                        
-                        responseContainerEl.appendChild(breweries[i][1]);
 
-                        responseContainerEl.appendChild(breweries[i][2]);
+
+                            listGroup.appendChild(breweries[i][0]);
+                        
+                            listGroup.appendChild(breweries[i][1]);
+
+                            listGroup.appendChild(breweries[i][2]);
+
+                            brewlistEl.appendChild(listGroup);
                     }
                 
                 })
