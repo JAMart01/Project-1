@@ -1521,8 +1521,8 @@ function CalculateAge(){
 
 var formEl = document.querySelector("#brew-form");
 var responseContainerEl = document.querySelector(".responsive-container");
+var mapContainerEl = document.querySelector("#map");
 var brewlistEl = document.querySelector("#brew-list");
-
 
 var brewFormHandler = function(event) {
     event.preventDefault();
@@ -1575,6 +1575,7 @@ var brewFormHandler = function(event) {
     
     brewFetch(geoURL,brewURL);
 
+    mapContainerEl.style.display = "block";
 };
 
 
@@ -1592,6 +1593,7 @@ var brewFetch = function(geoURL,BrewURL){
 
             var lng = JSON.stringify(response.results[0].locations[0].latLng.lng);
 
+
             BrewURL += "&by_dist=" + lat + "," + lng;
 
             fetch(BrewURL)
@@ -1601,16 +1603,24 @@ var brewFetch = function(geoURL,BrewURL){
                 .then(function(response){
                     var breweries = [];
 
+                    var mapLatLng = [];
+
+                    console.log(response);
+
                     for (var i = 0 ; i < response.length ; i++) {
-                         var listGroup = document.createElement("div");
-                         listGroup.setAttribute("class", "mb-4");
-
-                         
-
-
+                      
+                        var listGroup = document.createElement("div");
+                      
+                        listGroup.setAttribute("class", "mb-4");
+                      
                         breweries[i] = [];
 
+                        mapLatLng[i] = [];
+
+                        mapLatLng[i] = response[i].latitude + "," + response[i].longitude;
+
                         breweries[i][0] = document.createElement("p");
+
 
                         breweries[i][0].textContent = response[i].name;
 
@@ -1633,13 +1643,68 @@ var brewFetch = function(geoURL,BrewURL){
 
                             brewlistEl.appendChild(listGroup);
                     }
+                    
+
+
+                    L.mapquest.key = 'i59AhjaYZTQaOPj86iKkHTeoACIvMK7I';
+
+                    var map = L.mapquest.map('map', {
+                        center: [lat, lng],
+                        layers: L.mapquest.tileLayer('map'),
+                        zoom: 12
+                      });
+                      
+                      var directions = L.mapquest.directions();
+
+                      directions.setLayerOptions({
+                          startMarker: {
+                              draggable: false,
+                              icon: "marker",
+                              iconOptions: {
+                                  size: "sm",
+                              }
+                          },
+                          endMarker: {
+                              draggable: false,
+                            icon: 'marker',
+                            iconOptions: {
+                              size: 'sm',
+                            }
+                          },
+                          routeRibbon: {
+                            color: "#2aa6ce",
+                            opacity: 0,
+                            showTraffic: false,
+                            draggable: false
+                          },
+                          waypointMarker: {
+                              draggable: false
+                          },
+                      });
+
+                      L.mapquest.textMarker([lat, lng], {
+                        text: 'You Are Here!',
+                        position: 'bottom',
+                        type: 'marker',
+                        icon: {
+                          primaryColor: '#00cc66',
+                          secondaryColor: '#ffffff',
+                          size: 'sm'
+                        }
+                      }).addTo(map);
+
+                      directions.route({
+                        locations: mapLatLng
+                      });
                 
                 })
+              
         })
 
 };
 
 formEl.addEventListener("submit", brewFormHandler);
+
 
 
 
