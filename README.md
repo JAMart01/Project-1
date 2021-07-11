@@ -1,6 +1,6 @@
 # Beer-Me
 
-![image](https://user-images.githubusercontent.com/81602695/124676985-8f3fa500-de8d-11eb-8230-94fbbd1a4108.png)
+![image](https://user-images.githubusercontent.com/81602695/125179651-42760a00-e1be-11eb-8425-0a16b7144031.png)
 
 
   The best place to find a brewery near you that fits your needs. 
