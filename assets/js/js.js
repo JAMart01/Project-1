@@ -80,20 +80,20 @@ var brewFormHandler = function(event) {
 
 
     if (!addressInput || !cityInput || !stateInput) {
-        responseContainerEl.innerHTML = "";
+        brewlistEl.innerHTML = "";
         var addressAlert = document.createElement("h4");
         addressAlert.textContent = "You need to fill out the address form!";
         formEl.setAttribute("search-id","addressAlert");
-        responseContainerEl.appendChild(addressAlert);
+        brewlistEl.appendChild(addressAlert);
         return false;
     }
     
     if (listLengthInput && (listLengthInput < 1 || listLengthInput > 50)) {
-        responseContainerEl.innerHTML = "";
+        brewlistEl.innerHTML = "";
         var numberAlert = document.createElement("h4");
         numberAlert.textContent = "You need to enter a number between 1 and 50!";
         formEl.setAttribute("search-id","numberAlert");
-        responseContainerEl.appendChild(numberAlert);
+        brewlistEl.appendChild(numberAlert);
         return false;
     }
 
@@ -102,7 +102,7 @@ var brewFormHandler = function(event) {
     var newSearch = formEl.hasAttribute("search-id");
 
     if (newSearch) {
-        responseContainerEl.innerHTML = "";
+        brewlistEl.innerHTML = "";
     }
 
     geoURL += addressInput + "," + cityInput + "," + stateInput;
