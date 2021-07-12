@@ -24,3 +24,7 @@ https://developer.mapquest.com/documentation/geocoding-api/
 - Norma De Jesus(HTML and CSS)
 - Chunyu Chang (JavaScript)
 - Kierra Nelson (HTML and CSS)
+
+---
+# Linked to Deployed Application 
+https://jamart01.github.io/Project-1-Beer-Me/
