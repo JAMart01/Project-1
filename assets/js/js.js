@@ -71,7 +71,7 @@ var brewlistEl = document.querySelector("#brew-list");
 var brewFormHandler = function(event) {
     event.preventDefault();
     var brewURL = "https://api.openbrewerydb.org/breweries?" //by_type=brewpub&by_page=10&by_dist=
-    var geoURL = "http://www.mapquestapi.com/geocoding/v1/address?key=i59AhjaYZTQaOPj86iKkHTeoACIvMK7I&location="
+    var geoURL = "https://www.mapquestapi.com/geocoding/v1/address?key=i59AhjaYZTQaOPj86iKkHTeoACIvMK7I&location="
     var addressInput = document.querySelector("input[name='address']").value;
     var cityInput = document.querySelector("input[name='city']").value;
     var stateInput = document.querySelector("select[name='state']").value;
