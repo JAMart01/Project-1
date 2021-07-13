@@ -3,6 +3,7 @@ body {
     background: 100%;
     background-color: #F56527;
     display: flex;
+    height: 100vh;
 }
 
 .box {
@@ -15,6 +16,7 @@ body {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
+    height: fit-content;
 }
 
 .heading {
@@ -73,6 +75,25 @@ body {
     border: 5px solid #492A0B;
     border-radius: 25px;
 
+}
+
+#notage {
+    width: 100%;
+}
+
+.not21s {
+    display: flex;
+    justify-content: center;
+}
+
+.thankstitle {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 25px;
+    text-align: center;
+    color: #7A3F00;
+    background-color:antiquewhite;
+    border: 2px solid black;
+    padding: 10px 0px;
 }
 
 #warningsign {
